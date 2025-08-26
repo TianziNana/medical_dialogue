@@ -1,0 +1,62 @@
+import os
+import json
+import pickle
+import torch
+import random
+import numpy as np
+from typing import Any, Dict
+
+def set_seed(seed: int = 42):
+    """Set random seeds for reproducibility."""
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+
+def save_json(data: Dict[str, Any], filepath: str):
+    """Save dictionary to JSON file."""
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    with open(filepath, 'w') as f:
+        json.dump(data, f, indent=2)
+
+def load_json(filepath: str) -> Dict[str, Any]:
+    """Load dictionary from JSON file."""
+    with open(filepath, 'r') as f:
+        return json.load(f)
+
+def save_pickle(data: Any, filepath: str):
+    """Save data to pickle file."""
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    with open(filepath, 'wb') as f:
+        pickle.dump(data, f)
+
+def load_pickle(filepath: str) -> Any:
+    """Load data from pickle file."""
+    with open(filepath, 'rb') as f:
+        return pickle.load(f)
+
+def compute_improvement_percentage(baseline: float, improved: float) -> float:
+    """Compute improvement percentage."""
+    if baseline == 0:
+        return 0.0
+    return ((improved - baseline) / baseline) * 100
+
+def print_results_summary(results: Dict[str, Any]):
+    """Print formatted results summary."""
+    print("=" * 60)
+    print("EVALUATION RESULTS SUMMARY")
+    print("=" * 60)
+    
+    if 'overall_metrics' in results:
+        overall = results['overall_metrics']
+        print(f"Overall Performance:")
+        print(f"  ROUGE-L: {overall.get('rougeL', 0):.4f}")
+        print(f"  Entity Coverage: {overall.get('entity_coverage', 0):.4f}")
+    
+    if 'fairness_gaps' in results:
+        gaps = results['fairness_gaps']
+        print(f"Fairness Metrics:")
+        print(f"  ROUGE-L Gap: {gaps.get('rougeL_gap', 0):.4f}")
+        print(f"  Entity Coverage Gap: {gaps.get('entity_coverage_gap', 0):.4f}")
