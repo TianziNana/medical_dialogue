@@ -125,8 +125,8 @@ Based on baseline performance analysis, we implement differential augmentation:
 
 | Fairness Metric | Baseline | Fairness-Aware | Improvement |
 |-----------------|----------|----------------|-------------|
-| ROUGE-L Gap | 0.0650 | 0.0641 | -1.34% |
-| Entity Coverage Gap | 0.1013 | 0.0998 | -1.49% |
+| ROUGE-L Gap | 0.0650 | 0.0641 | +1.34% |
+| Entity Coverage Gap | 0.1013 | 0.0998 | +1.49% |
 | **Gender CF Similarity** | **0.8926** | **0.8812** | **-1.27%** |
 | **Age CF Similarity** | **0.8213** | **0.8775** | **+6.84%** |
 
