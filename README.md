@@ -1,16 +1,7 @@
-# medical_dialogue
-
-好 ✅ 我帮你整理成一个 **完整的 README 开头部分**，风格对齐 NeurIPS/EMNLP，兼具 **technical + storytelling**。内容包含：
-
-* Abstract
-* Introduction & Background
-* Problem Statement
-* Limitations
-* Future Work
 
 ---
 
-# 📑 README 开头写法（NeurIPS/EMNLP 风格）
+#  README 
 
 ### Abstract
 
